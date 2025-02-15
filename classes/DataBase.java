@@ -3,6 +3,16 @@ package classes;
 import java.util.ArrayList;
 
 //APLIQUE SINGLETON NESTA CLASSE
+public static DataBase instance;
+
+public static Database getInstace () {
+    if(instance == null)
+        instance = new DataBase();
+
+    return Instance;
+{
+
+
 
 public class DataBase {
     
