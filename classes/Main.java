@@ -16,7 +16,6 @@ public class Main {
   public static void main(String[] args) {
     //REMOVA 
     
-    DataBase.getInstace();
     entrada = new Scanner(System.in);
     
     //FACA UM MENU PARA SELECIONAR A OPCAO (1 - Prof/ 2- Coord) USANDO A SENHA EM PROFESSOR
