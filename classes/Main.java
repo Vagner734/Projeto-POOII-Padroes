@@ -137,7 +137,7 @@ public static void menuProfessor(){
 
 
 public static void cadastarCoordenador(){
-  
+  DataBase db = DataBase.getInstance ();
   System.out.println("Lista de professores:");
     for (int i = 0; i < db.getProfessores().size(); i++) {
         System.out.printf("%d - %s\n", i + 1, db.getProfessores().get(i).getNome());
@@ -168,6 +168,7 @@ public static void cadastarCoordenador(){
 
 
 public static void cadastrarNotas(){
+  DataBase db = DataBase.getInstance ();
    System.out.println(" ---- Cadastrar Notas ----");
    
    System.out.println("Selecione a turma");
@@ -220,6 +221,7 @@ public static void cadastrarNotas(){
 
 
 public static void mostrarEstatistica(){
+  DataBase db = DataBase.getInstance ();
     System.out.println("Estatisticas");
     for( int i = 0; i < db.getTurmas().size(); i++){
       System.out.println("Dados da turma " + db.getTurmas().get(i).getIdentificacao());
@@ -259,6 +261,7 @@ public static void exibirListaRecuperacao(){
 
 
 public static void exibirListaGeral(){
+  DataBase db = DataBase.getInstance ();
   db.getTurmas().get(0).exibirDados();
   System.out.println();
 
@@ -312,6 +315,7 @@ public static void cadastrarProfessor(){
 }
 
 public static void vincularProfessorTurma(){
+  DataBase db = DataBase.getInstance ();
 
   System.out.println(" ---- Vincular Professor a Turma ----");
   System.out.println("Escolha o professor para vincular:");
@@ -350,6 +354,7 @@ public static void vincularProfessorTurma(){
 
 
 public static void cadastrarCurso() {
+  DataBase db = DataBase.getInstance ();
 
   System.out.println(" ---- Cadastrar Curso ----");
   Curso curso = new Curso();
@@ -364,6 +369,7 @@ public static void cadastrarCurso() {
 }
 
 public static void cadastrarAluno() {
+  DataBase db = DataBase.getInstance ();
 
   System.out.println(" ---- Cadastrar Aluno ----");
   Aluno aluno = new Aluno();
@@ -389,6 +395,7 @@ public static void cadastrarAluno() {
 }
 
 public static void vincularEstudanteTurma(){
+  DataBase db = DataBase.getInstance ();
 
   System.out.println(" ---- Vincular Estudante a Turma ----");
   System.out.println("Escolha o estudante para vincular:");
@@ -425,6 +432,7 @@ public static void vincularEstudanteTurma(){
 }
 
 public static void cadastrarTurma(){ 
+  DataBase db = DataBase.getInstance ();
   System.out.println(" ---- Cadastrar Turma ----");
   Turma turma = new Turma();
 
