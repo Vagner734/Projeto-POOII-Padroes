@@ -17,7 +17,23 @@ public class Main {
     //REMOVA 
     
     entrada = new Scanner(System.in);
+
+
+     // Exemplo de uso das classes Semestre e Nota
+     Semestre semestre = new Semestre("2024/1", true);
+     Nota nota = new Nota();
+     semestre.addObserver(nota);
+ 
+     System.out.println("Estado inicial da nota: " + nota.isEstadoNota());
+     semestre.setAtivo(false);
+     System.out.println("Estado após mudança: " + nota.isEstadoNota());
+ 
+     // Menu principal
+     menu();
+     entrada.close();
     
+  
+
     //FACA UM MENU PARA SELECIONAR A OPCAO (1 - Prof/ 2- Coord) USANDO A SENHA EM PROFESSOR
     //MENU
 
