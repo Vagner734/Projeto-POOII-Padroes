@@ -1,44 +1,35 @@
+package classes;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Nota implements Observer {
+
     private Double nota1;
     private Double nota2;
     private Double nota3;
     private Double notaRecuperacao;
     private boolean estadoNota;
-    private ArrayList<IOserver> observadores;
-
-    private List<Observer> observers;
+    private final List<Observer> observers;
 
     public Nota() {
         this.nota1 = 0.0;
         this.nota2 = 0.0;
         this.nota3 = 0.0;
         this.notaRecuperacao = 0.0;
-        this.estadoNota = false;
+        this.estadoNota = true;
         this.observers = new ArrayList<>();
     }
 
-    public Nota(Double nota1, Double nota2, Double nota3) {
-      if(!bloqueado)   "bloqueado": Unknown word
-        this.nota1 = (nota1 != null) ? nota1 : 0.0;
-        this.nota2 = (nota2 != null) ? nota2 : 0.0;
-        this.nota3 = (nota3 != null) ? nota3 : 0.0;
-        this.notaRecuperacao = 0.0;
-        this.estadoNota = false;
-        this.observers = new ArrayList<>();
-    }
-
-    // Getters e Setters
     public Double getNota1() {
         return nota1;
     }
 
     public void setNota1(Double nota1) {
-    if(!bloqueado)   "bloqueado": Unknown word   
-      this.nota1 = nota1;
-        notificarObservadores();
+        if (estadoNota) {
+            this.nota1 = nota1 != null ? nota1 : 0.0;
+            notificarObservadores();
+        }
     }
 
     public Double getNota2() {
@@ -46,9 +37,10 @@ public class Nota implements Observer {
     }
 
     public void setNota2(Double nota2) {
-    if(!bloqueado)   "bloqueado": Unknown word   
-      this.nota2 = nota2;
-        notificarObservadores();
+        if (estadoNota) {
+            this.nota2 = nota2 != null ? nota2 : 0.0;
+            notificarObservadores();
+        }
     }
 
     public Double getNota3() {
@@ -56,9 +48,10 @@ public class Nota implements Observer {
     }
 
     public void setNota3(Double nota3) {
-    if(!bloqueado)   "bloqueado": Unknown word  
-      this.nota3 = nota3;
-        notificarObservadores();
+        if (estadoNota) {
+            this.nota3 = nota3 != null ? nota3 : 0.0;
+            notificarObservadores();
+        }
     }
 
     public Double getNotaRecuperacao() {
@@ -66,9 +59,10 @@ public class Nota implements Observer {
     }
 
     public void setNotaRecuperacao(Double notaRecuperacao) {
-    if(!bloqueado)   "bloqueado": Unknown word 
-      this.notaRecuperacao = notaRecuperacao;
-        notificarObservadores();
+        if (estadoNota) {
+            this.notaRecuperacao = notaRecuperacao != null ? notaRecuperacao : 0.0;
+            notificarObservadores();
+        }
     }
 
     public boolean isEstadoNota() {
@@ -76,63 +70,53 @@ public class Nota implements Observer {
     }
 
     public void setEstadoNota(boolean estadoNota) {
-    if(!bloqueado)   "bloqueado": Unknown word
-      this.estadoNota = estadoNota;
-    }
-
-    // Cálculo da Média
-    public double calcularMedia() {
-        if (notaRecuperacao > 0) {
-            return (nota1 + nota2 + nota3 + notaRecuperacao) / 4;
+        if (this.estadoNota != estadoNota) { // Evita notificações desnecessárias
+            this.estadoNota = estadoNota;
+            notificarObservadores();
         }
-        return (nota1 + nota2 + nota3) / 3;
     }
 
-    // Verificação da Situação
+    public double calcularMedia() {
+        double mediaInicial = (nota1 + nota2 + nota3) / 3;
+        if (notaRecuperacao > 0) {
+            return (mediaInicial + notaRecuperacao) / 2;
+        }
+        return mediaInicial;
+    }
+
     public String verificarSituacao() {
         double media = calcularMedia();
         if (media < 2.5) {
-            return "Reprovado";
-        } else if (media < 7) {
-            return "Em recuperação";
-        } else {
+            return "Reprovado"; 
+        }else if (media < 7) {
+            return "Em recuperação"; 
+        }else {
             return "Aprovado";
         }
     }
 
-    // Implementação do Observer
     @Override
-    public void update() {
-        System.out.println("O semestre foi atualizado. Verifique as notas.");
-        this.estadoNota = false;
+    public void update(boolean param) {
+        this.estadoNota = param; // Atualiza sem notificar novamente
     }
 
     public void adicionarObservador(Observer observer) {
-        observers.add(observer);
-    }
-
-    public void removerObservador(Observer observer) {
-        observers.remove(observer);
-    }
-
-    public void notificarObservadores() {
-        for (Observer observer : observers) {
-            observer.update();
+        if (observer != null && !observers.contains(observer)) {
+            observers.add(observer);
         }
     }
 
-    // toString para facilitar a exibição
+    private void notificarObservadores() {
+        for (Observer o : new ArrayList<>(observers)) {
+            if (o != null && o != this) { // Evita notificar a si mesmo
+                o.update(estadoNota);
+            }
+        }
+    }
+
     @Override
     public String toString() {
         return String.format("Nota 1: %.2f, Nota 2: %.2f, Nota 3: %.2f, Recuperação: %.2f, Média: %.2f, Situação: %s",
                 nota1, nota2, nota3, notaRecuperacao, calcularMedia(), verificarSituacao());
     }
-    public void update(boolean param){ 
-      //fazer algo "fazer": Unknown word
-    }
-
-    public void addObservadores (IObserver observer) {
-      observadores.add (observadores); "observadores";
-    }
-
-} 
+}
