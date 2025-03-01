@@ -1,15 +1,16 @@
 package classes;
 
 public class Log {
-  private Nota notaAnterior;
-  private Nota notaAtual;
-  private Professor responsavel;
 
-  public Log(Professor responsavel, Nota notaAnterior, Nota notaAtual) {
-      this.responsavel = responsavel;
-      this.notaAnterior = notaAnterior;
-      this.notaAtual = notaAtual;
-  }
+    private Nota notaAnterior;
+    private Nota notaAtual;
+    private final Professor responsavel;
+
+    public Log(Professor responsavel, Nota notaAnterior, Nota notaAtual) {
+        this.responsavel = responsavel;
+        this.notaAnterior = notaAnterior;
+        this.notaAtual = notaAtual;
+    }
 
     public Nota getNotaAtual() {
         return notaAtual;
@@ -27,8 +28,10 @@ public class Log {
         this.notaAnterior = notaAnterior;
     }
 
-    public  void printLog(){
-      System.out.print("Responsavel: " + responsavel.getNome());
-      System.out.println(" -  Alteração de Nota: " + notaAnterior + " para "+ notaAtual);
+    public void printLog() {
+        String respNome = (responsavel != null && responsavel.getNome() != null) ? responsavel.getNome() : "Desconhecido";
+        String anterior = (notaAnterior != null) ? notaAnterior.toString() : "Nenhuma";
+        String atual = (notaAtual != null) ? notaAtual.toString() : "Nenhuma";
+        System.out.println("Responsável: " + respNome + " - Alteração de Nota: " + anterior + " para " + atual);
     }
 }
