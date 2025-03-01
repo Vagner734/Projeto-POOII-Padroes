@@ -1,6 +1,6 @@
-pacckage class
+package classes;
 
 public interface Observer {
-   public void update(boolean param);
 
-  }
+    void update(boolean param);
+}
