@@ -1,62 +1,56 @@
 package classes;
 
-public abstract class Pessoa implements Printable{
+public abstract class Pessoa implements Printable {
 
-  private String nome;
-  private String cpf;
-  private String telefone;
-  private String endereco;
+    private String nome;
+    private String cpf;
+    private String telefone;
+    private String endereco;
 
-  Pessoa(){
+    public Pessoa() {
+    }
 
-  }
+    public Pessoa(String nome, String cpf, String telefone, String endereco) {
+        this.nome = nome;
+        this.cpf = cpf;
+        this.telefone = telefone;
+        this.endereco = endereco;
+    }
 
-  public Pessoa(String nome, String cpf, String telefone, String endereco){
-    super();
-      this.nome = nome;
-      this.cpf = cpf;
-      this.telefone = telefone;
-      this.endereco = endereco;
-  }
+    public String getNome() {
+        return nome;
+    }
 
-  public String getNome(){
-    return nome;
-  }
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
-  public void setNome(String nome){
-    this. nome = nome;
-  }
+    public String getCpf() {
+        return cpf;
+    }
 
-  public String getCpf(){
-    return cpf;
-  }
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
 
-  public void setCpf(String cpf){
-    this. cpf = cpf;
-  }
+    public String getTelefone() {
+        return telefone;
+    }
 
-  public String getTelefone(){
-    return telefone;
-  }
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
 
-  public void setTelefone(String telefone){
-    this. telefone = telefone;
-  }
-  
-  public String getEndereco(){
-    return endereco;
-  }
+    public String getEndereco() {
+        return endereco;
+    }
 
-  public void setEndereco( String endereco){
-    this. endereco = endereco;
-  }
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
 
-  public void exibirDados(){
-    System.out.println("Nome: " + getNome() + ", CPF: " + getCpf() + ", Endereço: " + getEndereco() + ", Telefone: " + getTelefone());
-  }
-
-  public void imprimirDados(){
-    
-  }
-
+    @Override
+    public void exibirDados() {
+        System.out.println("Nome: " + nome + ", CPF: " + cpf + ", Endereço: " + endereco + ", Telefone: " + telefone);
+    }
 }
